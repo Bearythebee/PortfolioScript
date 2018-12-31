@@ -1,5 +1,12 @@
 # Portfolio_Script
-Script written to update data on google sheets
+
+### Background ###
+Was using InvestmentMoats's Investment Stock Tracker. 
+Link : http://investmentmoats.com/stock-market-commentary/portfolio-management/introducing-our-free-stock-portfolio-tracker-spreadsheet/
+
+When Yahoo, which got bought over by Verizon, decided to shut down the Yahoo Finance API, we are uanble to obtain realtime live stock prices. A solution was posted by Kyith(founder of InvestmentMoats) such that he will update the closing prices at the end of everday and we import the data from his googlesheet.
+
+However, I would still like to see if realtime updates of data was possible. Hence the motivation for this project.
 
 Wrote a script to update stock market prices on my own google sheet
 
