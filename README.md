@@ -6,14 +6,47 @@ Link : http://investmentmoats.com/stock-market-commentary/portfolio-management/i
 
 When Yahoo, which got bought over by Verizon, decided to shut down the Yahoo Finance API, we are uanble to obtain realtime live stock prices. A solution was posted by Kyith(founder of InvestmentMoats) such that he will update the closing prices at the end of everday and we import the data from his googlesheet.
 
-However, I would still like to see if realtime updates of data was possible. Hence the motivation for this project.
+Granted there were quite a few modules written for what i was attempting, i find that this project may benefit me in the future as i am also able to learn and brush up on webscraping skills at the same time.
 
-Wrote a script to update stock market prices on my own google sheet
+Hence the motivation for this project.
 
-Daily data taken from pandas yahoo datareader(pandas) and scraped from yahoo finance website(Beautiful Soup)
+### Progress ###
 
-Company's financial data  taken from SGX website. (Selenium and BeautifulSoup)
+### -----1----- ###
+When i first started out, the first thing that came to my mind was to scrape data directly using the IMPORTHTML/IMPORTXML function native to googlesheets. 
 
+However, i came to realise it took a lot of time if the calls were made together.
+
+There were a few solutions to improve the speed of the calls
+I attempted one , which is to set a conditional function for every cell.
+i.e If cell A1 not updated, cell B1 = "wait" else update cell B1
+
+The speed of the updates still left much to be desired.
+
+### -----2----- ###
+I think it might be faster to get the data locally.
+
+Hence i attempted to import data using yahoo datareader(pandas). 
+And it worked. Speed was a lot faster than importing in googlesheets
+
+I decide to see if i can include more data in my googlesheet, 
+as Pandas yahoo datareader only return [open,high,low,close,volume]
+
+### -----3----- ###
+I then decide to scrape the data directly from yahoo finance website, using python's BeautifulSoup library.
+I also attempted to scrape companies'financial information from SGX.
+
+Main problem i encountered was most financial websites has data contained in an iframe 
+so that website can update without refreshing. This however, means that BeautifulSoup cannot scrape the data.
+
+After more research, finally managed to scrape the data using Selenium and chromedriver.
+
+## Present Situation ##
+Now i am still trying to improve speed of my code by looking at other websites to see if
+it is easier to get data from them instead.
+
+
+### Summary ###
 Problems encountered:
  - Unable to update stock price in realtime (Still working on it)
  - Unable to scrape data from some websites with just BeautifulSoup
