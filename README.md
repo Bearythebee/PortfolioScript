@@ -41,6 +41,12 @@ so that website can update without refreshing. This however, means that Beautifu
 
 After more research, finally managed to scrape the data using Selenium and chromedriver.
 
+### -----4----- ###
+Decided to scrape directly from SGX website as some counters are not available on yahoo. Also decided to output data into a csv file before manually uploading as this is faster (without having to abide by the 100 writes per 100 seconds using Google APIs)
+
+### -----5----- ###
+Looking into getting data via xhr files via http requests instead of directly scraping html.
+
 ## Present Situation ##
 Now i am still trying to improve speed of my code by looking at other websites to see if
 it is easier to get data from them instead.
