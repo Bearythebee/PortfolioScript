@@ -46,6 +46,9 @@ Decided to scrape directly from SGX website as some counters are not available o
 
 ### -----5----- ###
 Looking into getting data via xhr files via http requests instead of directly scraping html.
+Managed to do it with data from InvestingNote.com. 
+Took a lot faster(I decreased the # of data per ticker to collect as well)
+Interestingly, i have to do two requests. One to get id of ticker(Apparently each ticker is attached a number in this website) and the other to get the data(needed id and ticker symbols).
 
 ## Present Situation ##
 Now i am still trying to improve speed of my code by looking at other websites to see if
