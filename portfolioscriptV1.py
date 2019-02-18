@@ -4,11 +4,10 @@ from oauth2client.client import SignedJwtAssertionCredentials
 import requests
 import pandas_datareader as web
 import bs4 as bs
-from datetime import datetime,timedelta
+import datetime as dt
+from datetime import datetime, timedelta
 import pickle
 import time
-from selenium import webdriver
-from selenium.webdriver.chrome.options import Options 
 
 json_key = json.load(open('file.txt')) # json credentials you downloaded earlier
 
@@ -79,10 +78,11 @@ print("####################################")
 def getData(ticker,ticker_name):
 
 	Exempted = ["G3B.SI"]
+	Exempted2 = ["CRPU.SI"]
 
 	end = datetime.today()
-	start = end - timedelta(days = 365)
-	
+	start = end - timedelta(days = 200)
+        
 	df = web.DataReader(ticker,'yahoo',start,end)
 	
 	lst = [ticker,ticker_name]
@@ -91,14 +91,24 @@ def getData(ticker,ticker_name):
 	lst.append(round(df['High'][-1],3)) #High
 	lst.append(round(df['Low'][-1],3)) #Low
 	lst.append(round(df['Close'][-1],3)) #Close
-	lst.append(round(df['Close'][-2],3)) #Previous Close
 	lst.append(round(df['Volume'][-1]/1000,3)) #Volume
 
 	if ticker in Exempted:
+		lst.append(round(df['Close'][-2],3)) #Previous Close
 		lst.append(round(df['Close'].min(),3)) #52week low
 		lst.append(round(df['Close'].max(),3)) #52week High
 		lst.append(round(df['Close'].rolling(window = 50,min_periods=0).mean()[-1],3)) #50MA
 		lst.append(round(df['Close'].rolling(window = 200,min_periods=0).mean()[-1],3)) #200MA
+		lst.append("-")
+		lst.append("-")
+		lst.append("-")
+
+	elif ticker in Exempted2:
+		lst.append("-")
+		lst.append("-")
+		lst.append("-") 
+		lst.append("-")
+		lst.append("-")
 		lst.append("-")
 		lst.append("-")
 		lst.append("-")
@@ -125,6 +135,7 @@ def getData(ticker,ticker_name):
 							temp_dict[heading] = t.text
 							counter = 0
 
+		lst.append(round(df['Close'][-2],3)) #Previous Close
 		lst.append(temp_dict["52-week low "]) #52week Low
 		lst.append(temp_dict["52-week high "]) #52week High
 		lst.append(temp_dict["50-day moving average "]) #50MA
@@ -155,16 +166,15 @@ def update(sheet,write_counter):
         print("Updating : {} , row {}".format(stock,row))
         
         stock_name = dictionary[stock]
-        
+
         data = getData(stock,stock_name)
-                
         for col in range(1,16):
             
             sheet.update_cell(row, col, data[col-1])
                 
             write_count+=1
                 
-            if write_count == 100:
+            if write_count == 90:
                 time_counter = round(time.time() - start_time)
                 sleep_time = 100 - time_counter
                 print("Sleeping for {} seconds".format(sleep_time))
@@ -182,4 +192,4 @@ write = update(Stocks,0)
 #slp = 100-(time.time()-start)
 #print("Sleeping for {} seconds".format(slp))
 #time.sleep(slp)
-update(Reits,write)
+update(Reits,0)
