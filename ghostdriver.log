@@ -1,0 +1,26 @@
+[INFO  - 2018-12-29T06:51:27.167Z] GhostDriver - Main - running on port 64610
+[INFO  - 2018-12-29T06:51:30.697Z] Session [2c0cb2c0-0b36-11e9-9add-5da74796dd47] - page.settings - {"XSSAuditingEnabled":false,"javascriptCanCloseWindows":true,"javascriptCanOpenWindows":true,"javascriptEnabled":true,"loadImages":true,"localToRemoteUrlAccessEnabled":false,"userAgent":"Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/538.1 (KHTML, like Gecko) PhantomJS/2.1.1 Safari/538.1","webSecurityEnabled":true}
+[INFO  - 2018-12-29T06:51:30.698Z] Session [2c0cb2c0-0b36-11e9-9add-5da74796dd47] - page.customHeaders:  - {}
+[INFO  - 2018-12-29T06:51:30.698Z] Session [2c0cb2c0-0b36-11e9-9add-5da74796dd47] - Session.negotiatedCapabilities - {"browserName":"phantomjs","version":"2.1.1","driverName":"ghostdriver","driverVersion":"1.2.0","platform":"windows-10-32bit","javascriptEnabled":true,"takesScreenshot":true,"handlesAlerts":false,"databaseEnabled":false,"locationContextEnabled":false,"applicationCacheEnabled":false,"browserConnectionEnabled":false,"cssSelectorsEnabled":true,"webStorageEnabled":false,"rotatable":false,"acceptSslCerts":false,"nativeEvents":true,"proxy":{"proxyType":"direct"}}
+[INFO  - 2018-12-29T06:51:30.699Z] SessionManagerReqHand - _postNewSessionCommand - New Session Created: 2c0cb2c0-0b36-11e9-9add-5da74796dd47
+[ERROR - 2018-12-29T06:51:34.676Z] Session [2c0cb2c0-0b36-11e9-9add-5da74796dd47] - page.onError - msg: createContextualFragment@[native code]
+https://www2.sgx.com/index.e89de7780868ef2fc875.chunk.js:1:111936
+getNode@https://www2.sgx.com/index.e89de7780868ef2fc875.chunk.js:1:112191
+setData@https://www2.sgx.com/index.e89de7780868ef2fc875.chunk.js:19:207975
+_updateTemplate@https://www2.sgx.com/index.e89de7780868ef2fc875.chunk.js:46:330444
+_applyChanges@https://www2.sgx.com/index.e89de7780868ef2fc875.chunk.js:46:328023
+https://www2.sgx.com/index.e89de7780868ef2fc875.chunk.js:46:327699
+[native code]
+https://www2.sgx.com/index.e89de7780868ef2fc875.chunk.js:19:491313
+https://www2.sgx.com/index.e89de7780868ef2fc875.chunk.js:33:50153
+z@https://www2.sgx.com/index.e89de7780868ef2fc875.chunk.js:33:50262
+r@https://www2.sgx.com/index.e89de7780868ef2fc875.chunk.js:33:49626
+
+  phantomjs://platform/console++.js:263 in error
+[ERROR - 2018-12-29T06:51:34.677Z] Session [2c0cb2c0-0b36-11e9-9add-5da74796dd47] - page.onError - stack:
+  _updateTemplate (https://www2.sgx.com/index.e89de7780868ef2fc875.chunk.js:46)
+
+  phantomjs://platform/console++.js:263 in error
+[ERROR - 2018-12-29T06:51:37.157Z] WebElementLocator - _handleLocateCommand - Element(s) NOT Found: GAVE UP. Search Stop Time: 1546066297119
+
+  phantomjs://platform/console++.js:263 in error
