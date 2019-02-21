@@ -10,6 +10,7 @@ import pickle
 import time
 import re
 
+
 pd.set_option('display.max_columns', 50)
 
 with open('stocks.pickle','rb') as f:
@@ -64,8 +65,12 @@ if reits_to_add:
 
 def getFinancialData(ticker,ticker_name):
     
+    to_ = datetime.now()
+    from_ = to_ - timedelta(days = 2)
+
     id_ = requests.get("https://ws.investingnote.com/charts/symbols?symbol={}&authenticity_token=C0Wvy6ExIENlWrU6EsuG1Gk3DPWvE1aV%2BmKcY%2BUm5tlaxtEymUtTP6N0O%2FCULjJjkB1Sia9ZlC%2FHZROleaJEyg%3D%3D".format(ticker)).json()['id']
-    test = requests.get("https://ws.investingnote.com/charts/history?symbol={}&id={}&resolution=D&from=1519396649&to=1550500710&authenticity_token=C0Wvy6ExIENlWrU6EsuG1Gk3DPWvE1aV%2BmKcY%2BUm5tlaxtEymUtTP6N0O%2FCULjJjkB1Sia9ZlC%2FHZROleaJEyg%3D%3D".format(ticker,id_)).json()
+    test = requests.get("https://ws.investingnote.com/charts/history?symbol={}&id={}&resolution=D&from={}&to={}&authenticity_token=C0Wvy6ExIENlWrU6EsuG1Gk3DPWvE1aV%2BmKcY%2BUm5tlaxtEymUtTP6N0O%2FCULjJjkB1Sia9ZlC%2FHZROleaJEyg%3D%3D".format(ticker,id_,datetime.timestamp(from_),datetime.timestamp(to_))).json()
+
 
     Open = test['o'][-1]
     High = test['h'][-1]
@@ -75,6 +80,8 @@ def getFinancialData(ticker,ticker_name):
     
     lst = [ticker,ticker_name,Close,Open,High,Low,Vol]
     
+    print(lst)
+
     return lst
 
 def get_alldata(full_dictionary):
@@ -100,3 +107,5 @@ data = get_alldata({**stocks,**reits})
 df = pd.DataFrame.from_records(data,columns=headers)
 
 df.to_csv("data/{}.csv".format(str(date.today())),index=False)
+
+
