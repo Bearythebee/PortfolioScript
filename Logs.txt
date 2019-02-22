@@ -1,0 +1,89 @@
+### Progress 
+
+###
+
+### -----1----- ###
+
+
+When i first started out, the first thing that came to my mind was to scrape data directly using the IMPORTHTML/IMPORTXML function native to googlesheets. 
+
+However, i came to realise it took a lot of time if the calls were made together.
+
+There were a few solutions to improve the speed of the calls
+I attempted one , which is to set a conditional function for every cell.
+i.e If cell A1 not updated, cell B1 = "wait" else update cell B1
+
+The speed of the updates still left much to be desired.
+
+
+
+### -----2----- ###
+
+
+I think it might be faster to get the data locally.
+
+Hence i attempted to import data using yahoo datareader(pandas). 
+And it worked. Speed was a lot faster than importing in googlesheets
+
+I decide to see if i can include more data in my googlesheet, 
+as Pandas yahoo datareader only return [open,high,low,close,volume]
+
+
+
+### -----3----- ###
+
+
+I then decide to scrape the data directly from yahoo finance website, using python's BeautifulSoup library.
+I also attempted to scrape companies'financial information from SGX.
+
+Main problem i encountered was most financial websites has data contained in an iframe 
+so that website can update without refreshing. This however, means that BeautifulSoup cannot scrape the data.
+
+After more research, finally managed to scrape the data using Selenium and chromedriver.
+
+
+
+### -----4----- ###
+
+
+Decided to scrape directly from SGX website as some counters are not available on yahoo. Also decided to output data into a csv file before manually uploading as this is faster (without having to abide by the 100 writes per 100 seconds using Google APIs)
+
+
+
+### -----5----- ###
+
+
+Looking into getting data via xhr files via http requests instead of directly scraping html.
+
+Managed to do it with data from InvestingNote.com. 
+
+Was a lot faster(I decreased the # of data per ticker to collect as well)
+
+Interestingly, i have to do two requests. One to get id of ticker(Apparently each ticker is attached a number in this website) and the other to get the data(needed id and ticker symbols).
+
+This method is sightly faster than pandas_datareader.
+
+
+
+## Present Situation ##
+
+
+Now i am still trying to improve speed of my code by looking at other websites to see if
+it is easier to get data from them instead.
+
+
+
+
+### Summary ###
+
+
+Problems encountered:
+ - Unable to update stock price in realtime (Still working on it)
+ - Unable to scrape data from some websites with just BeautifulSoup
+    - some data are updated regularly with javascript / hidden in an iframe 
+    - managed to solve it utilising Selenium and chromedriver
+ - Updating limit for google sheets - 100 writes per 100 seconds
+    - Allowed code to sleep for a certain amount of time in between updates to bypass this limit.
+ 
+ Still trying to improve on data collection
+     - Exploring other financial websites (MorningStar,FinancialTimes etc.)
